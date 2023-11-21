@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Character } from '../entities/character.entity';
@@ -13,6 +13,10 @@ export class CharactersService {
 
     async updateAccomplices(characterId: string, updateAccomplicesDto: UpdateAccomplicesDto): Promise<void> {
         const character = await this.characterRepository.findOne({ id: characterId });
+
+        if (!character) {
+            throw new NotFoundException(`Character with ID ${characterId} not found`);
+        }
 
         character.knownAccomplices = await this.characterRepository.findByIds(updateAccomplicesDto.accomplices);
 

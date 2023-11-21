@@ -1,6 +1,9 @@
-import { IsArray, IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty, IsUUID } from 'class-validator';
 
 export class UpdateAccomplicesDto {
+    @IsUUID()
+    characterId: string;
+
     @IsNotEmpty()
     @IsArray()
     accomplices: string[];
