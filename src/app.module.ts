@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CharactersModule } from './modules/character/characters.module';
 import { config } from './config/orm.config';
 import { dataSourceOptions } from 'db/data-source';
+import { setupSwagger } from './config/swagger.config';
 
 @Module({
   imports: [
@@ -14,4 +15,4 @@ import { dataSourceOptions } from 'db/data-source';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {} 
+export class AppModule { }
